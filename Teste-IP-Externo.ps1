@@ -11,7 +11,7 @@ function Stop-ExternalTest([string]$Message) {
 Clear-Host
 Write-Host ""
 Write-Host "  .============================================================================." -ForegroundColor DarkGreen
-Write-Host "  | AYRES DEV 4.2.8 // EXTERNAL IP TEST GATE                                  |" -ForegroundColor Green
+Write-Host "  | AYRES DEV 4.3.0 // IP-ONLY EXTERNAL TEST                                  |" -ForegroundColor Green
 Write-Host "  | OUTRA INTERNET ======> IP PUBLICO:PORTA ======> SEU SERVIDOR                |" -ForegroundColor Magenta
 Write-Host "  '============================================================================'" -ForegroundColor DarkGreen
 Write-Host ""
@@ -42,27 +42,37 @@ if ($isPrivate) {
     Stop-ExternalTest "Esse e um IP local/privado. Esta opcao exige o IP publico."
 }
 
-$portText = (Read-Host "Porta do servidor [80]").Trim()
-if ([string]::IsNullOrWhiteSpace($portText)) { $portText = "80" }
-$port = 0
-if (-not [int]::TryParse($portText, [ref]$port) -or $port -lt 1 -or $port -gt 65535) {
-    Stop-ExternalTest "Porta invalida. Use um numero entre 1 e 65535."
+function Test-WebPort([System.Net.IPAddress]$Ip, [int]$Port) {
+    $client = New-Object System.Net.Sockets.TcpClient
+    try {
+        $attempt = $client.BeginConnect($Ip, $Port, $null, $null)
+        return $attempt.AsyncWaitHandle.WaitOne(2500, $false) -and $client.Connected
+    } catch {
+        return $false
+    } finally {
+        $client.Close()
+    }
 }
 
-$protocolInput = (Read-Host "Protocolo: [1] HTTP  [2] HTTPS").Trim().ToUpperInvariant()
-switch ($protocolInput) {
-    ""      { $protocol = if ($port -eq 443) { "HTTPS" } else { "HTTP" } }
-    "1"     { $protocol = "HTTP" }
-    "HTTP"  { $protocol = "HTTP" }
-    "80"    { $protocol = "HTTP"; $port = 80 }
-    "2"     { $protocol = "HTTPS" }
-    "HTTPS" { $protocol = "HTTPS" }
-    "443"   { $protocol = "HTTPS"; $port = 443 }
-    default { Stop-ExternalTest "Opcao invalida. Digite 1 para HTTP ou 2 para HTTPS." }
+Write-Host ""
+Write-Host "  Verificando automaticamente as portas web 80 e 443..." -ForegroundColor DarkCyan
+$httpOpen = Test-WebPort -Ip $address -Port 80
+$httpsOpen = Test-WebPort -Ip $address -Port 443
+
+if ($httpOpen) {
+    $protocol = "HTTP"
+    $port = 80
+} elseif ($httpsOpen) {
+    $protocol = "HTTPS"
+    $port = 443
+} else {
+    Stop-ExternalTest "As portas 80 e 443 nao responderam. O servidor nao esta acessivel nesse IP."
 }
 
 $url = $protocol.ToLowerInvariant() + "://" + $address.IPAddressToString + ":" + $port + "/"
 Write-Host ""
+Write-Host ("  HTTP:80 ...... " + $(if ($httpOpen) { "ABERTA" } else { "SEM RESPOSTA" })) -ForegroundColor $(if ($httpOpen) { "Green" } else { "DarkYellow" })
+Write-Host ("  HTTPS:443 .... " + $(if ($httpsOpen) { "ABERTA" } else { "SEM RESPOSTA" })) -ForegroundColor $(if ($httpsOpen) { "Green" } else { "DarkYellow" })
 Write-Host ("  Destino externo preparado: " + $url) -ForegroundColor Cyan
 Write-Host "  A confirmacao final aparecera na proxima tela." -ForegroundColor DarkGray
 Start-Sleep -Milliseconds 700

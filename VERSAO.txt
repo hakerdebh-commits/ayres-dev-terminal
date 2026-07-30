@@ -1,9 +1,12 @@
-AYRES DEV 4.2.9 - LIVE LOAD PROGRESS
+AYRES DEV 4.3.0 - IP-ONLY EXTERNAL TEST
 ==========================================
 
 Lancamento: 26/07/2026
 
 Principais mudancas:
+- opcao [9] agora pede somente o IPv4 publico;
+- deteccao automatica das portas web 80 e 443;
+- teste interrompido com explicacao quando nenhuma porta responde;
 - teste de carga agora mostra porcentagem e contagem regressiva em tempo real;
 - aviso quando HTTPS e usado diretamente em um IP sem dominio;
 - protocolo externo agora aceita 1/HTTP/80 ou 2/HTTPS/443;
