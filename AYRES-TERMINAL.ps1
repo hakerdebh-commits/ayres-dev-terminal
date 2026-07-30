@@ -1,4 +1,4 @@
-# AYRES DEV TERMINAL 4.2 - launcher PowerShell, ASCII-only.
+# AYRES DEV TERMINAL 4.2.4 - launcher PowerShell, ASCII-only.
 $ErrorActionPreference = 'Stop'
 $Host.UI.RawUI.WindowTitle = 'AYRES DEV TERMINAL 4.2.4'
 $core = Join-Path $PSScriptRoot 'AyresDev.ps1'
@@ -51,7 +51,7 @@ function New-Project {
 
 do {
   Header
-  Write-Host '[1] Entrar no painel completo AYRES DEV 4.2' -ForegroundColor Green
+  Write-Host '[1] Entrar no painel completo AYRES DEV 4.2.4' -ForegroundColor Green
   Write-Host '    Painel Ayres e Site Adriana, Workbench, servidor, testes e GitHub.' -ForegroundColor DarkGray
   Write-Host '[2] Abrir somente Codex em uma pasta' -ForegroundColor Green
   Write-Host '[3] Criar novo projeto Git local' -ForegroundColor Green

@@ -7,7 +7,7 @@ param(
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = "Stop"
-$script:Version = "4.2.0"
+$script:Version = "4.2.4"
 $script:Root = $PSScriptRoot
 $script:ConfigFile = Join-Path $script:Root "projetos.json"
 $script:StateRoot = if ($env:LOCALAPPDATA) {
@@ -941,6 +941,18 @@ function Write-State {
     Write-Host $Value -ForegroundColor $Color
 }
 
+function Write-MaskedHeader {
+    param([string]$Mode)
+    Write-Host "  .============================================================================." -ForegroundColor DarkGreen
+    Write-Host ("  | AYRES DEV " + $script:Version + " // " + $Mode.PadRight(54) + " |") -ForegroundColor Green
+    Write-Host "  |                 .-''''-.       .-''''-.                                  |" -ForegroundColor DarkGreen
+    Write-Host "  |                /  o  o  \_____/  o  o  \                                 |" -ForegroundColor Green
+    Write-Host "  |                \       /  _  \       /                                  |" -ForegroundColor Green
+    Write-Host "  |                 '-----/__/ \__\-----'                                   |" -ForegroundColor DarkGreen
+    Write-Host "  |       MASKED OPERATOR // LOCAL CORE // SAFE GIT CONTROL                  |" -ForegroundColor DarkCyan
+    Write-Host '  `============================================================================`' -ForegroundColor DarkGreen
+}
+
 function Show-Dashboard {
     param($Project, [string]$Path)
     $git = Get-GitInfo -Path $Path
@@ -960,15 +972,13 @@ function Show-Dashboard {
 
     Clear-Host
     Write-Host ""
-    Write-Host "  .==============================================================================." -ForegroundColor DarkGreen
-    Write-Host ("  | AYRES MASKED DEV " + $script:Version + " // LIVE DEVELOPMENT CONSOLE".PadRight(54) + " CORE |") -ForegroundColor Green
-    Write-Host "  | [ ANONYMOUS-STYLE VISUAL ]  LOCAL OPERATOR // SAFE GIT CONTROL              |" -ForegroundColor DarkCyan
-    Write-Host '  `==============================================================================`' -ForegroundColor DarkGreen
+    Write-MaskedHeader -Mode "PROJECT OPERATIONS"
     Write-Host ""
-    Write-Host ("  PROJECT  " + $Project.name.ToUpperInvariant()) -ForegroundColor White
-    Write-Host ("  PATH     " + $Path) -ForegroundColor DarkGray
+    Write-Host "  [ 01 // TARGET IDENTITY ]" -ForegroundColor Magenta
+    Write-Host ("  PROJECT ........ " + $Project.name.ToUpperInvariant()) -ForegroundColor White
+    Write-Host ("  WORKSPACE ...... " + $Path) -ForegroundColor DarkGray
     Write-Host ""
-    Write-Host "  [ MASKED LIVE SYSTEM ]" -ForegroundColor Magenta
+    Write-Host "  [ 02 // LIVE TELEMETRY ]" -ForegroundColor Magenta
     Write-State "DEV SERVER" $serverText $serverColor
     Write-State "LOCAL URL" $url "Cyan"
     Write-State "GIT BRANCH" $git.Branch "Cyan"
@@ -977,7 +987,7 @@ function Show-Dashboard {
     Write-State "CODEX" (Get-ToolState "codex") $(if (Test-App "codex") { "Magenta" } else { "DarkYellow" })
     Write-State "NODE / GIT" ((Get-ToolState "node") + " / " + (Get-ToolState "git")) "Green"
     Write-Host ""
-    Write-Host "  [ CHANGES NOW ]" -ForegroundColor Magenta
+    Write-Host "  [ 03 // WORKTREE INTEL ]" -ForegroundColor Magenta
     if ($git.Files.Count -eq 0) {
         Write-Host "  workspace clean // nenhuma mudanca pendente" -ForegroundColor DarkGray
     } else {
@@ -989,16 +999,19 @@ function Show-Dashboard {
         }
     }
     Write-Host ""
-    Write-Host "  [ REALTIME OUTPUT ]" -ForegroundColor Magenta
+    Write-Host "  [ 04 // REALTIME OUTPUT ]" -ForegroundColor Magenta
     foreach ($line in @(Get-LogTail -Project $Project)) {
         $visible = if ($line.Length -gt 94) { $line.Substring(0, 94) } else { $line }
         Write-Host ("  > " + $visible) -ForegroundColor DarkGreen
     }
     Write-Host ""
-    Write-Host "  [W] WORKBENCH      [A] CODEX IA       [O] ABRIR LOCAL     [R] REINICIAR" -ForegroundColor Green
-    Write-Host "  [E] VS CODE        [D] GIT DIFF       [Q] TESTAR/BUILD    [P] PUBLICAR" -ForegroundColor Cyan
-    Write-Host "  [T] TERMINAL       [U] ATUALIZAR      [S] PARAR SERVER    [I] PREPARAR PC" -ForegroundColor Gray
-    Write-Host "  [X] DIAGNOSTICO      [V] TROCAR PROJETO                 [0] SAIR" -ForegroundColor DarkGray
+    Write-Host "  [ 05 // COMMAND MATRIX ]" -ForegroundColor Magenta
+    Write-Host "  +-------------------+-------------------+-------------------+------------------+" -ForegroundColor DarkGreen
+    Write-Host "  | [W] WORKBENCH     | [A] CODEX IA      | [O] ABRIR SITE    | [R] REINICIAR    |" -ForegroundColor Green
+    Write-Host "  | [E] VS CODE       | [D] GIT DIFF      | [Q] TESTAR/BUILD  | [P] PUBLICAR     |" -ForegroundColor Cyan
+    Write-Host "  | [T] TERMINAL      | [U] ATUALIZAR     | [S] PARAR SERVER | [I] PREPARAR PC  |" -ForegroundColor Gray
+    Write-Host "  | [X] DIAGNOSTICO   | [V] TROCAR ALVO   | [0] SAIR          |                  |" -ForegroundColor DarkGray
+    Write-Host "  +-------------------+-------------------+-------------------+------------------+" -ForegroundColor DarkGreen
     if ($script:LastNotice) {
         Write-Host ""
         Write-Host ("  >> " + $script:LastNotice) -ForegroundColor $script:LastNoticeColor
@@ -1109,20 +1122,18 @@ function Show-ProjectSelector {
         $projects = @(Get-Projects)
         Clear-Host
         Write-Host ""
-        Write-Host "  +------------------------------------------------------------------+" -ForegroundColor DarkCyan
-        Write-Host ("  | AYRES DEV " + $script:Version + " // SELECT WORKSPACE".PadRight(45) + " |") -ForegroundColor Cyan
-        Write-Host "  +------------------------------------------------------------------+" -ForegroundColor DarkCyan
+        Write-MaskedHeader -Mode "SELECT TARGET"
         Write-Host ""
+        Write-Host "  [ AVAILABLE WORKSPACES ]" -ForegroundColor Magenta
         for ($index = 0; $index -lt $projects.Count; $index++) {
             $project = $projects[$index]
-            Write-Host ("  [" + ($index + 1) + "] " + $project.name.ToUpperInvariant()) -ForegroundColor $project.color
-            Write-Host ("      " + $project.description) -ForegroundColor DarkGray
+            Write-Host ("  +--[" + ($index + 1) + "]-- " + $project.name.ToUpperInvariant()) -ForegroundColor $project.color
+            Write-Host ("  |       " + $project.description) -ForegroundColor DarkGray
+            Write-Host "  |" -ForegroundColor DarkGreen
             Write-Host ""
         }
-        Write-Host "  [I] PREPARAR ESTE PC" -ForegroundColor Green
-        Write-Host "  [N] NOVO PROJETO POR URL" -ForegroundColor Magenta
-        Write-Host "  [X] DIAGNOSTICO" -ForegroundColor Cyan
-        Write-Host "  [0] SAIR" -ForegroundColor DarkGray
+        Write-Host "  [ SYSTEM COMMANDS ]" -ForegroundColor Magenta
+        Write-Host "  [I] PREPARAR PC   [N] IMPORTAR GITHUB   [X] DIAGNOSTICO   [0] SAIR" -ForegroundColor Green
         Write-Host ""
         $key = [Console]::ReadKey($true).KeyChar.ToString().ToUpperInvariant()
         if ($key -eq "0") { return $null }
