@@ -7,7 +7,7 @@ param(
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = "Stop"
-$script:Version = "4.2.8"
+$script:Version = "4.2.9"
 $script:Root = $PSScriptRoot
 $script:LolbasAudit = Join-Path $script:Root "Verificar-LOLBAS.ps1"
 $script:LoadTest = Join-Path $script:Root "Teste-Carga.ps1"

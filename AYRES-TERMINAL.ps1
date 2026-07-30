@@ -1,6 +1,6 @@
-# AYRES DEV TERMINAL 4.2.8 - launcher PowerShell, ASCII-only.
+# AYRES DEV TERMINAL 4.2.9 - launcher PowerShell, ASCII-only.
 $ErrorActionPreference = 'Stop'
-$Host.UI.RawUI.WindowTitle = 'AYRES DEV TERMINAL 4.2.8'
+$Host.UI.RawUI.WindowTitle = 'AYRES DEV TERMINAL 4.2.9'
 $core = Join-Path $PSScriptRoot 'AyresDev.ps1'
 $profileInstaller = Join-Path $PSScriptRoot 'Instalar-Perfil-Ayres.ps1'
 $lolbasAudit = Join-Path $PSScriptRoot 'Verificar-LOLBAS.ps1'
@@ -12,7 +12,7 @@ function Header {
   Write-Host '  .--------------------------------------------------------.' -ForegroundColor DarkGreen
   Write-Host '  |   _   _   _   _   _   _   _   _   _   _   _   _       |' -ForegroundColor Green
   Write-Host '  |  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \      |' -ForegroundColor Green
-  Write-Host '  | ( A | Y | R | E | S | - | 4 | . | 2 | . | 8 )        |' -ForegroundColor Cyan
+  Write-Host '  | ( A | Y | R | E | S | - | 4 | . | 2 | . | 9 )        |' -ForegroundColor Cyan
   Write-Host '  |  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/      |' -ForegroundColor Green
   Write-Host '  |                                                        |' -ForegroundColor DarkGreen
   Write-Host '  |           [ MASKED OPERATOR TERMINAL ]                 |' -ForegroundColor Magenta
@@ -54,7 +54,7 @@ function New-Project {
 
 do {
   Header
-  Write-Host '[1] Entrar no painel completo AYRES DEV 4.2.8' -ForegroundColor Green
+  Write-Host '[1] Entrar no painel completo AYRES DEV 4.2.9' -ForegroundColor Green
   Write-Host '    Painel Ayres e Site Adriana, Workbench, servidor, testes e GitHub.' -ForegroundColor DarkGray
   Write-Host '[2] Abrir somente Codex em uma pasta' -ForegroundColor Green
   Write-Host '[3] Criar novo projeto Git local' -ForegroundColor Green
