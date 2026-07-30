@@ -1,6 +1,6 @@
 # AYRES DEV TERMINAL 4.2 - launcher PowerShell, ASCII-only.
 $ErrorActionPreference = 'Stop'
-$Host.UI.RawUI.WindowTitle = 'AYRES DEV TERMINAL 4.2'
+$Host.UI.RawUI.WindowTitle = 'AYRES DEV TERMINAL 4.2.4'
 $core = Join-Path $PSScriptRoot 'AyresDev.ps1'
 $profileInstaller = Join-Path $PSScriptRoot 'Instalar-Perfil-Ayres.ps1'
 
@@ -9,7 +9,7 @@ function Header {
   Write-Host '  .--------------------------------------------------------.' -ForegroundColor DarkGreen
   Write-Host '  |   _   _   _   _   _   _   _   _   _   _   _   _       |' -ForegroundColor Green
   Write-Host '  |  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \      |' -ForegroundColor Green
-  Write-Host '  | ( A | Y | R | E | S | - | 4 | . | 2 | - | X )        |' -ForegroundColor Cyan
+  Write-Host '  | ( A | Y | R | E | S | - | 4 | . | 2 | . | 4 )        |' -ForegroundColor Cyan
   Write-Host '  |  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/      |' -ForegroundColor Green
   Write-Host '  |                                                        |' -ForegroundColor DarkGreen
   Write-Host '  |           [ MASKED OPERATOR TERMINAL ]                 |' -ForegroundColor Magenta
@@ -57,6 +57,7 @@ do {
   Write-Host '[3] Criar novo projeto Git local' -ForegroundColor Green
   Write-Host '[4] Instalar tela AYRES ao abrir o PowerShell' -ForegroundColor Magenta
   Write-Host '[5] Remover tela AYRES do PowerShell' -ForegroundColor DarkMagenta
+  Write-Host '[6] Abrir terminal livre na pasta do AYRES DEV' -ForegroundColor Cyan
   Write-Host '[0] Sair' -ForegroundColor DarkGray
   $choice=Read-Host 'Escolha uma opcao'
   switch($choice){
@@ -73,6 +74,11 @@ do {
       if((Read-Host 'Remover somente a tela inicial AYRES? (S/N)') -match '^[sS]$'){
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $profileInstaller -Action Remove
       }
+      Pause-Here
+    }
+    '6' {
+      Write-Host ('Abrindo terminal em: ' + $PSScriptRoot) -ForegroundColor Green
+      Start-Process powershell.exe -WorkingDirectory $PSScriptRoot -ArgumentList '-NoExit'
       Pause-Here
     }
     '0' { break }

@@ -21,3 +21,6 @@ O menu inclui uma adaptacao segura da ideia do projeto `hakernet`:
 - cria backup antes de alterar um perfil existente;
 - pode ser removida pelo proprio menu;
 - nao inclui ferramentas de invasao ou coleta de credenciais.
+
+O menu principal tambem possui a opcao `[6]`, que abre um PowerShell livre
+diretamente na pasta do AYRES DEV para executar Git, Codex e manutencoes locais.
