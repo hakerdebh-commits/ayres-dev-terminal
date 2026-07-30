@@ -38,3 +38,12 @@ e deixa a decisao com o usuario.
 - nao substitui o Microsoft Defender;
 - usa o projeto LOLBAS apenas como referencia defensiva:
   https://github.com/LOLBAS-Project/LOLBAS
+
+## Teste de carga autorizado
+
+A opcao `[8]` aceita uma URL local ou publicada. Dentro de um projeto, pressione
+`[K]` para testar o endereco do servidor configurado. O modulo exige confirmacao,
+aceita cancelamento e apresenta requisicoes, sucesso, falhas, req/s e latencia.
+Enderecos com IP e porta tambem sao aceitos, como `http://192.168.0.10:5173`.
+Destinos publicos possuem limites menores que `localhost` para evitar sobrecarga
+acidental. Use somente em sistemas proprios ou com autorizacao expressa.

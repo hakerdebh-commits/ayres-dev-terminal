@@ -1,9 +1,13 @@
-AYRES DEV 4.2.5 - DEFENSIVE LOLBAS AUDIT
+AYRES DEV 4.2.6 - AUTHORIZED LOAD LAB
 ==========================================
 
 Lancamento: 26/07/2026
 
 Principais mudancas:
+- teste de carga para URL publicada ou localhost;
+- atalho [8] no menu principal e [K] dentro do projeto;
+- confirmacao de autorizacao, cancelamento e limites de seguranca;
+- metricas de sucesso, falhas, req/s e latencia;
 - auditoria defensiva LOLBAS disponivel no menu principal e no painel do projeto;
 - analise somente leitura de processos e linhas de comando suspeitas;
 - nenhum processo e encerrado e nenhum arquivo e alterado pela auditoria;

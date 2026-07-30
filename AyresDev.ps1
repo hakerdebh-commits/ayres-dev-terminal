@@ -7,9 +7,10 @@ param(
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = "Stop"
-$script:Version = "4.2.5"
+$script:Version = "4.2.6"
 $script:Root = $PSScriptRoot
 $script:LolbasAudit = Join-Path $script:Root "Verificar-LOLBAS.ps1"
+$script:LoadTest = Join-Path $script:Root "Teste-Carga.ps1"
 $script:ConfigFile = Join-Path $script:Root "projetos.json"
 $script:StateRoot = if ($env:LOCALAPPDATA) {
     Join-Path $env:LOCALAPPDATA "AyresDev"
@@ -1011,7 +1012,8 @@ function Show-Dashboard {
     Write-Host "  | [W] WORKBENCH     | [A] CODEX IA      | [O] ABRIR SITE    | [R] REINICIAR    |" -ForegroundColor Green
     Write-Host "  | [E] VS CODE       | [D] GIT DIFF      | [Q] TESTAR/BUILD  | [P] PUBLICAR     |" -ForegroundColor Cyan
     Write-Host "  | [T] TERMINAL      | [U] ATUALIZAR     | [S] PARAR SERVER | [I] PREPARAR PC  |" -ForegroundColor Gray
-    Write-Host "  | [X] DIAGNOSTICO   | [L] LOLBAS AUDIT  | [V] TROCAR ALVO   | [0] SAIR         |" -ForegroundColor DarkGray
+    Write-Host "  | [X] DIAGNOSTICO   | [L] LOLBAS AUDIT  | [K] TESTE CARGA   | [V] TROCAR ALVO |" -ForegroundColor DarkGray
+    Write-Host "  | [0] SAIR          |                   |                   |                  |" -ForegroundColor DarkGray
     Write-Host "  +-------------------+-------------------+-------------------+------------------+" -ForegroundColor DarkGreen
     if ($script:LastNotice) {
         Write-Host ""
@@ -1077,6 +1079,9 @@ function Show-ProjectDashboard {
             }
             "L" {
                 & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $script:LolbasAudit
+            }
+            "K" {
+                & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $script:LoadTest -Url (Get-DevUrl -Project $Project)
             }
             "V" { return "SWITCH" }
             "0" { return "EXIT" }
