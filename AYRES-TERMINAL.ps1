@@ -2,6 +2,7 @@
 $ErrorActionPreference = 'Stop'
 $Host.UI.RawUI.WindowTitle = 'AYRES DEV TERMINAL 4.2'
 $core = Join-Path $PSScriptRoot 'AyresDev.ps1'
+$profileInstaller = Join-Path $PSScriptRoot 'Instalar-Perfil-Ayres.ps1'
 
 function Header {
   Clear-Host
@@ -54,12 +55,26 @@ do {
   Write-Host '    Painel Ayres e Site Adriana, Workbench, servidor, testes e GitHub.' -ForegroundColor DarkGray
   Write-Host '[2] Abrir somente Codex em uma pasta' -ForegroundColor Green
   Write-Host '[3] Criar novo projeto Git local' -ForegroundColor Green
+  Write-Host '[4] Instalar tela AYRES ao abrir o PowerShell' -ForegroundColor Magenta
+  Write-Host '[5] Remover tela AYRES do PowerShell' -ForegroundColor DarkMagenta
   Write-Host '[0] Sair' -ForegroundColor DarkGray
   $choice=Read-Host 'Escolha uma opcao'
   switch($choice){
     '1' { & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $core -Mode Dashboard }
     '2' { $folder=Existing-Folder 'Cole o caminho da pasta';if($folder){Open-Codex $folder}else{Pause-Here} }
     '3' { New-Project }
+    '4' {
+      if((Read-Host 'Personalizar o PowerShell deste usuario? (S/N)') -match '^[sS]$'){
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $profileInstaller -Action Install
+      }
+      Pause-Here
+    }
+    '5' {
+      if((Read-Host 'Remover somente a tela inicial AYRES? (S/N)') -match '^[sS]$'){
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $profileInstaller -Action Remove
+      }
+      Pause-Here
+    }
     '0' { break }
     default { Write-Host 'Opcao invalida.' -ForegroundColor Yellow;Start-Sleep -Seconds 1 }
   }
