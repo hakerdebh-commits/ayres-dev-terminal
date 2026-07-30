@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "painel-ayres",
+      "name": "Painel Ayres",
+      "description": "React + Vite + Supabase // operacao logistica",
+      "repository": "https://github.com/manoelAy-maker/painel.git",
+      "folders": [
+        "painel",
+        "painel-ayres",
+        "ayres-painel"
+      ],
+      "defaultUrl": "http://localhost:5173",
+      "color": "Cyan"
+    },
+    {
+      "id": "site-adriana",
+      "name": "Site Adriana",
+      "description": "Loja virtual // catalogo e experiencia de compra",
+      "repository": "https://github.com/hakerdebh-commits/loja-adriana.git",
+      "folders": [
+        "loja-adriana",
+        "site-adriana"
+      ],
+      "defaultUrl": "http://localhost:5173",
+      "color": "Magenta"
+    }
+  ]
+}

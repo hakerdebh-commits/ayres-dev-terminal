@@ -1,0 +1,31 @@
+AYRES DEV 4.2.2 - MASKED TERMINAL LAUNCHER
+==========================================
+
+Lancamento: 26/07/2026
+
+Principais mudancas:
+- painel sem redesenho continuo e sem piscadas;
+- servidor validado pela porta local real;
+- estados ONLINE, INICIANDO e OFFLINE;
+- importacao de novo projeto por URL HTTPS do GitHub;
+- cadastro e clone automaticos com reversao em caso de falha;
+- diagnostico interno executavel com -Mode SelfTest;
+- validacao segura das pastas de projeto;
+- suporte a Corepack, pnpm, Yarn e novos lockfiles do Bun;
+- servidor morto na inicializacao agora e detectado;
+- navegador aguarda o endereco real do servidor;
+- configuracao invalida informa o erro de forma clara;
+- painel atualizado automaticamente;
+- estados reais do servidor, Git, Node e Codex;
+- ultimas linhas reais do servidor no painel;
+- deteccao automatica do endereco localhost;
+- VS Code configurado como editor principal;
+- atualizacao no navegador ao salvar pelo servidor do projeto;
+- workspace temporario sem alterar o repositorio;
+- Codex oficial dentro da pasta selecionada;
+- diff real antes da publicacao;
+- lint, testes e build antes do push;
+- servidor com iniciar, parar e reiniciar;
+- caminhos, logs e configuracoes fora da pasta do projeto;
+- visual Live Core mais limpo e profissional;
+- configuracao dos projetos separada em projetos.json.

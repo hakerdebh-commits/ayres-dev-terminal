@@ -1,0 +1,99 @@
+AYRES DEV 4.2 - LIVE DEVELOPMENT CONSOLE
+========================================
+
+O QUE MUDOU
+O Ayres Dev nao e mais apenas um menu com informacoes. Agora ele acompanha
+o projeto de verdade e atualiza a tela com:
+
+- servidor local ligado ou desligado;
+- PID real do servidor;
+- endereco correto do localhost;
+- branch atual do Git;
+- quantidade e lista de arquivos modificados;
+- ultimo commit;
+- ultimas linhas reais do servidor;
+- estado do Node, Git e Codex.
+
+MELHORIAS DA VERSAO 4.2
+- tela redesenhada somente quando alguma informacao muda, eliminando a piscada;
+- servidor verificado pela porta real: ONLINE, INICIANDO ou OFFLINE;
+- novo comando [N] para colar uma URL do GitHub;
+- projeto importado e cadastrado automaticamente no seletor;
+- diagnostico interno para conferir configuracao e ferramentas;
+- validacao da pasta escolhida antes de salva-la;
+- suporte melhor a projetos com PNPM, Yarn, Bun e Corepack;
+- deteccao de servidor que encerra logo depois de iniciar;
+- espera pelo endereco real antes de abrir o navegador;
+- mensagens de erro mais uteis no painel;
+- versao da interface sincronizada automaticamente.
+
+COMO ABRIR
+1. Extraia toda a pasta AyresDev.
+2. Clique duas vezes em Abrir-AyresDev.bat.
+3. Escolha Painel Ayres ou Site Adriana.
+4. Se o projeto nao estiver no PC, escolha uma pasta ou baixe do GitHub.
+5. Pressione W para iniciar o modo de trabalho completo.
+
+MODO TRABALHO [W]
+- instala as dependencias quando necessario;
+- atualiza do GitHub somente se nao houver mudancas locais;
+- inicia o servidor local;
+- abre o projeto no VS Code;
+- abre o site no navegador;
+- ativa salvamento automatico e atualizacao ao salvar;
+- recomenda e abre a extensao oficial Codex no VS Code.
+
+COMANDOS DO PAINEL
+[W] Workbench: VS Code + servidor + navegador
+[A] Codex dentro da pasta do projeto
+[O] Abrir o localhost
+[R] Reiniciar o servidor
+[E] Abrir somente o VS Code
+[D] Ver arquivos e linhas alteradas
+[Q] Executar lint, testes e build disponiveis
+[P] Testar, revisar e publicar no GitHub
+[T] Abrir terminal livre dentro do projeto
+[U] Atualizar do GitHub sem apagar mudancas
+[S] Parar o servidor local
+[I] Preparar um computador novo
+[V] Trocar de projeto
+[N] Importar e criar um projeto a partir da URL do GitHub
+
+CODEX
+O Ayres Dev usa o Codex CLI oficial e a extensao oficial do VS Code.
+Na primeira utilizacao pode ser necessario entrar com sua conta.
+
+O Codex e iniciado com acesso de escrita somente na pasta do projeto e pede
+aprovacao quando uma operacao precisa de permissao adicional.
+
+Exemplos do que escrever:
+- corrija a calculadora, rode os testes e mostre o resultado
+- melhore a tela de embarque sem mudar as outras paginas
+- encontre por que a barra lateral deixa um buraco preto
+- crie esta funcionalidade e abra localmente para eu conferir
+
+PUBLICACAO SEGURA
+O Ayres Dev mostra as mudancas, executa os testes disponiveis e somente envia
+ao GitHub depois que voce digitar exatamente PUBLICAR.
+
+PC DA EMPRESA
+Use [I] para verificar e instalar Git, Node.js, VS Code, GitHub CLI, Windows
+Terminal e Codex. O instalador usa Winget e nao contorna bloqueios da empresa.
+Se a politica do Windows impedir uma instalacao, sera necessario pedir
+liberacao ao suporte de TI.
+
+ARQUIVOS E CONFIGURACAO
+- projetos.json: lista dos projetos e repositorios.
+- dados temporarios: %LOCALAPPDATA%\AyresDev
+- logs: %LOCALAPPDATA%\AyresDev\logs
+- caminhos salvos: %LOCALAPPDATA%\AyresDev\paths
+
+REQUISITOS RECOMENDADOS
+- Windows 10 ou 11
+- PowerShell 5.1 ou PowerShell 7
+- Git
+- Node.js LTS
+- Visual Studio Code
+- Codex CLI
+
+AYRES DEV 4.2 // MANOEL AYRES
