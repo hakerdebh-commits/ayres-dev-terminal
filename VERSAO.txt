@@ -1,4 +1,4 @@
-AYRES DEV 4.2.4 - MASKED PROFILE + PROJECT TERMINAL
+AYRES DEV 4.2.5 - WPF MASKED CONTROL PANEL
 ==========================================
 
 Lancamento: 26/07/2026

@@ -24,3 +24,9 @@ O menu inclui uma adaptacao segura da ideia do projeto `hakernet`:
 
 O menu principal tambem possui a opcao `[6]`, que abre um PowerShell livre
 diretamente na pasta do AYRES DEV para executar Git, Codex e manutencoes locais.
+
+## Painel grafico PowerShell
+
+`Abrir-AyresDev.bat` inicia um painel WPF portatil com visual neon, chuva de
+codigo e acesso direto a projetos, Codex, PowerShell, VS Code e GitHub.
+O painel continua sendo executado por PowerShell e nao instala um aplicativo.
