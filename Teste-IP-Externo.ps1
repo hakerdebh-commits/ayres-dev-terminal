@@ -11,7 +11,7 @@ function Stop-ExternalTest([string]$Message) {
 Clear-Host
 Write-Host ""
 Write-Host "  .============================================================================." -ForegroundColor DarkGreen
-Write-Host "  | AYRES DEV 4.2.7 // EXTERNAL IP TEST GATE                                  |" -ForegroundColor Green
+Write-Host "  | AYRES DEV 4.2.8 // EXTERNAL IP TEST GATE                                  |" -ForegroundColor Green
 Write-Host "  | OUTRA INTERNET ======> IP PUBLICO:PORTA ======> SEU SERVIDOR                |" -ForegroundColor Magenta
 Write-Host "  '============================================================================'" -ForegroundColor DarkGreen
 Write-Host ""
@@ -49,10 +49,16 @@ if (-not [int]::TryParse($portText, [ref]$port) -or $port -lt 1 -or $port -gt 65
     Stop-ExternalTest "Porta invalida. Use um numero entre 1 e 65535."
 }
 
-$protocol = (Read-Host "Protocolo HTTP ou HTTPS [HTTP]").Trim().ToUpperInvariant()
-if ([string]::IsNullOrWhiteSpace($protocol)) { $protocol = "HTTP" }
-if ($protocol -notin @("HTTP", "HTTPS")) {
-    Stop-ExternalTest "Protocolo invalido. Digite HTTP ou HTTPS."
+$protocolInput = (Read-Host "Protocolo: [1] HTTP  [2] HTTPS").Trim().ToUpperInvariant()
+switch ($protocolInput) {
+    ""      { $protocol = if ($port -eq 443) { "HTTPS" } else { "HTTP" } }
+    "1"     { $protocol = "HTTP" }
+    "HTTP"  { $protocol = "HTTP" }
+    "80"    { $protocol = "HTTP"; $port = 80 }
+    "2"     { $protocol = "HTTPS" }
+    "HTTPS" { $protocol = "HTTPS" }
+    "443"   { $protocol = "HTTPS"; $port = 443 }
+    default { Stop-ExternalTest "Opcao invalida. Digite 1 para HTTP ou 2 para HTTPS." }
 }
 
 $url = $protocol.ToLowerInvariant() + "://" + $address.IPAddressToString + ":" + $port + "/"

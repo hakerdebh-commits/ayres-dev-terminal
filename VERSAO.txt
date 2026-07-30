@@ -1,9 +1,11 @@
-AYRES DEV 4.2.7 - EXTERNAL IP TEST GATE
+AYRES DEV 4.2.8 - EXTERNAL IP UX FIX
 ==========================================
 
 Lancamento: 26/07/2026
 
 Principais mudancas:
+- protocolo externo agora aceita 1/HTTP/80 ou 2/HTTPS/443;
+- porta 443 informada no protocolo e corrigida automaticamente para HTTPS;
 - opcao [9] para testar um servidor por IPv4 publico a partir de outra internet;
 - validacao de IP publico, porta e protocolo HTTP/HTTPS;
 - bloqueio de localhost e faixas privadas nesse modo;
