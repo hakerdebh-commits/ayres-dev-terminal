@@ -1,9 +1,12 @@
-AYRES DEV 4.2.4 - MASKED PROFILE + PROJECT TERMINAL
+AYRES DEV 4.2.5 - DEFENSIVE LOLBAS AUDIT
 ==========================================
 
 Lancamento: 26/07/2026
 
 Principais mudancas:
+- auditoria defensiva LOLBAS disponivel no menu principal e no painel do projeto;
+- analise somente leitura de processos e linhas de comando suspeitas;
+- nenhum processo e encerrado e nenhum arquivo e alterado pela auditoria;
 - painel sem redesenho continuo e sem piscadas;
 - servidor validado pela porta local real;
 - estados ONLINE, INICIANDO e OFFLINE;

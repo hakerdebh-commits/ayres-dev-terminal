@@ -24,3 +24,17 @@ O menu inclui uma adaptacao segura da ideia do projeto `hakernet`:
 
 O menu principal tambem possui a opcao `[6]`, que abre um PowerShell livre
 diretamente na pasta do AYRES DEV para executar Git, Codex e manutencoes locais.
+
+## Auditoria defensiva LOLBAS
+
+A opcao `[7]` do menu principal e a tecla `[L]` dentro de um projeto executam
+uma verificacao somente leitura dos processos ativos. Ela procura padroes
+suspeitos no uso de ferramentas legitimas do Windows, mostra o motivo do alerta
+e deixa a decisao com o usuario.
+
+- nao executa comandos do catalogo LOLBAS;
+- nao encerra processos;
+- nao apaga nem altera arquivos;
+- nao substitui o Microsoft Defender;
+- usa o projeto LOLBAS apenas como referencia defensiva:
+  https://github.com/LOLBAS-Project/LOLBAS

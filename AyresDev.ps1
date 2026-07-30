@@ -7,8 +7,9 @@ param(
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = "Stop"
-$script:Version = "4.2.4"
+$script:Version = "4.2.5"
 $script:Root = $PSScriptRoot
+$script:LolbasAudit = Join-Path $script:Root "Verificar-LOLBAS.ps1"
 $script:ConfigFile = Join-Path $script:Root "projetos.json"
 $script:StateRoot = if ($env:LOCALAPPDATA) {
     Join-Path $env:LOCALAPPDATA "AyresDev"
@@ -1010,7 +1011,7 @@ function Show-Dashboard {
     Write-Host "  | [W] WORKBENCH     | [A] CODEX IA      | [O] ABRIR SITE    | [R] REINICIAR    |" -ForegroundColor Green
     Write-Host "  | [E] VS CODE       | [D] GIT DIFF      | [Q] TESTAR/BUILD  | [P] PUBLICAR     |" -ForegroundColor Cyan
     Write-Host "  | [T] TERMINAL      | [U] ATUALIZAR     | [S] PARAR SERVER | [I] PREPARAR PC  |" -ForegroundColor Gray
-    Write-Host "  | [X] DIAGNOSTICO   | [V] TROCAR ALVO   | [0] SAIR          |                  |" -ForegroundColor DarkGray
+    Write-Host "  | [X] DIAGNOSTICO   | [L] LOLBAS AUDIT  | [V] TROCAR ALVO   | [0] SAIR         |" -ForegroundColor DarkGray
     Write-Host "  +-------------------+-------------------+-------------------+------------------+" -ForegroundColor DarkGreen
     if ($script:LastNotice) {
         Write-Host ""
@@ -1073,6 +1074,9 @@ function Show-ProjectDashboard {
                 Clear-Host
                 [void](Invoke-SelfTest -TargetProjectPath $Path)
                 Pause-Ayres
+            }
+            "L" {
+                & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $script:LolbasAudit
             }
             "V" { return "SWITCH" }
             "0" { return "EXIT" }
