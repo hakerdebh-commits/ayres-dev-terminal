@@ -1,14 +1,14 @@
 @echo off
 setlocal
 chcp 65001 >nul
-title AYRES DEV MASKED CONTROL 4.2.5
-set "AYRES_SCRIPT=%~dp0AYRES-PAINEL.ps1"
+title AYRES DEV TERMINAL 4.2
+set "AYRES_SCRIPT=%~dp0AYRES-TERMINAL.ps1"
 
 where pwsh.exe >nul 2>&1
 if %errorlevel% equ 0 (
-    pwsh.exe -NoLogo -NoProfile -STA -ExecutionPolicy Bypass -File "%AYRES_SCRIPT%"
+    pwsh.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%AYRES_SCRIPT%"
 ) else (
-    powershell.exe -NoLogo -NoProfile -STA -ExecutionPolicy Bypass -File "%AYRES_SCRIPT%"
+    powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%AYRES_SCRIPT%"
 )
 
 if errorlevel 1 (
