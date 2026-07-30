@@ -1,9 +1,12 @@
-AYRES DEV 4.2.6 - AUTHORIZED LOAD LAB
+AYRES DEV 4.2.7 - EXTERNAL IP TEST GATE
 ==========================================
 
 Lancamento: 26/07/2026
 
 Principais mudancas:
+- opcao [9] para testar um servidor por IPv4 publico a partir de outra internet;
+- validacao de IP publico, porta e protocolo HTTP/HTTPS;
+- bloqueio de localhost e faixas privadas nesse modo;
 - teste de carga para URL publicada ou localhost;
 - atalho [8] no menu principal e [K] dentro do projeto;
 - confirmacao de autorizacao, cancelamento e limites de seguranca;

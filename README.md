@@ -47,3 +47,8 @@ aceita cancelamento e apresenta requisicoes, sucesso, falhas, req/s e latencia.
 Enderecos com IP e porta tambem sao aceitos, como `http://192.168.0.10:5173`.
 Destinos publicos possuem limites menores que `localhost` para evitar sobrecarga
 acidental. Use somente em sistemas proprios ou com autorizacao expressa.
+
+A opcao `[9]` prepara um teste por IPv4 publico e porta. Ela rejeita enderecos
+locais/privados e deve ser executada em um computador conectado a outra internet,
+para que o trafego realmente chegue de fora da rede do servidor. A ferramenta
+nao abre portas nem altera o roteador ou o Firewall do Windows.
