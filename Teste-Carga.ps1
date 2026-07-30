@@ -44,9 +44,9 @@ if (-not [Uri]::TryCreate($Url, [UriKind]::Absolute, [ref]$target) -or
 $isLocal = $target.Host -in @("localhost", "127.0.0.1", "::1")
 $targetIp = $null
 $isDirectIp = [System.Net.IPAddress]::TryParse($target.Host, [ref]$targetIp)
-$maxUsers = if ($isLocal) { 500 } else { 100 }
-$maxDuration = if ($isLocal) { 900 } else { 300 }
-$maxRequests = if ($isLocal) { 50000 } else { 10000 }
+$maxUsers = if ($isLocal) { 999999 } else { 9999999 }
+$maxDuration = if ($isLocal) { 900999999 } else { 999999 }
+$maxRequests = if ($isLocal) { 999999999 } else { 10000000 }
 
 if ($Usuarios -le 0) {
     $typed = Read-Host "Usuarios simultaneos [1-$maxUsers]"
